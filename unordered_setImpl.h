@@ -22,7 +22,10 @@ template <typename TYPE,typename classe_de_dispersion>
 void unordered_multiset<TYPE, classe_de_dispersion>::iterator::avancer()
 {
     if(POS == (*ALV)->end()){
-        ALV++;
+        while (*ALV == nullptr) {
+            ALV++;
+        }
+        POS = (*ALV)->begin();
     }
     else {
         POS++;
@@ -33,7 +36,10 @@ template <typename TYPE,typename classe_de_dispersion>
 void unordered_multiset<TYPE, classe_de_dispersion>::iterator::reculer()
 {
     if(POS == (*ALV)->begin()){
-        ALV--;
+        while (*ALV == nullptr) {
+            ALV--;
+        }
+        POS = --(*ALV).end();
     }
     else {
         POS--;
@@ -47,21 +53,26 @@ template <typename TYPE,typename classe_de_dispersion>
 typename unordered_multiset<TYPE,classe_de_dispersion>::iterator
 unordered_multiset<TYPE, classe_de_dispersion>::insert(const TYPE& VAL)
 {
-    typename unordered_multiset<TYPE,classe_de_dispersion>::iterator p;
-    return p;
+    if (facteur_max < SIZE / REP.size())
+        rehash(REP.size() + REP.size() + 1);
+
+
 }
 
 template <typename TYPE,typename classe_de_dispersion>
 size_t unordered_multiset<TYPE, classe_de_dispersion>::erase(const TYPE& VAL)
 {
-    size_t nb=0;
-    return nb;
+    if (SIZE / REP.size() < facteur_min)
+        rehash( (REP.size() - 1) / 2);
+
+
 }
 
 template <typename TYPE,typename classe_de_dispersion>
 typename unordered_multiset<TYPE,classe_de_dispersion>::iterator
 unordered_multiset<TYPE, classe_de_dispersion>::erase(typename unordered_multiset<TYPE, classe_de_dispersion>::iterator i)
 {
+
     return i;
 }
 
